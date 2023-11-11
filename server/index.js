@@ -14,7 +14,18 @@ io.on('connection',(socket)=>{
     console.log(socket.id);
     socket.on("message",(data)=>{
         console.log("received message: " ,data);
+    }
+   
+    )
+   socket.on("message_from_user_to_room",(data,roomId)=>{
+
+       socket.to(roomId).emit("message_for_room",data)
+   })
+
+    socket.on('join_room',(roomId)=>{
+        socket.join(roomId);
     })
+    
 })
 
 
